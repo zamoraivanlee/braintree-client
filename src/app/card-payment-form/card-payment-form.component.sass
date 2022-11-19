@@ -1,0 +1,38 @@
+input
+    font-family: monospace
+    font-size: 16px
+
+.container
+    display: grid
+    gap: 16px
+    grid-template-columns: auto auto
+
+.hosted-field-wrapper
+    & input
+        display: none
+    & .hosted-field
+        height: 24px
+
+.mat-mdc-form-field
+    width: 100%
+    & input
+        font:
+            family: monospace
+            size: 16px
+
+.range-ceiling
+    padding-left: 0
+    text-align: right
+
+.range-floor
+    padding-right: 0
+    text-align: right
+
+.separator
+    padding: 0
+    text-align: center
+
+.table-form
+    border-spacing: 0
+    & td
+        padding: 0

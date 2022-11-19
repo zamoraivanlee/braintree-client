@@ -1,0 +1,93 @@
+<div class="container">
+    <mat-card>
+        <mat-card-content>
+            <mat-progress-bar *ngIf="processing" mode="indeterminate"></mat-progress-bar>
+            <table class="table-form">
+                <tr>
+                    <td colspan="2">
+                        <mat-form-field id="amount-to-pay" appearance="fill">
+                            <mat-label>Amount to pay</mat-label>
+                            <input matInput [disabled]="processing" type="number" [(ngModel)]="amountToPay">
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <mat-form-field appearance="fill" class="hosted-field-wrapper" hosted-field="card-number">
+                            <mat-label>Card number</mat-label>
+                            <input matInput [disabled]="processing">
+                            <div id="card-number" class="hosted-field"></div>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <mat-form-field appearance="fill" class="hosted-field-wrapper" hosted-field="cardholder-name">
+                            <mat-label>Cardholder name</mat-label>
+                            <input matInput [disabled]="processing">
+                            <div id="cardholder-name" class="hosted-field"></div>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field appearance="fill" class="hosted-field-wrapper mat-mdc-left"
+                            hosted-field="expiry-date">
+                            <mat-label>Expiry</mat-label>
+                            <input matInput [disabled]="processing">
+                            <div id="expiry-date" class="hosted-field"></div>
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field appearance="fill" class="hosted-field-wrapper mat-mdc-right" hosted-field="cvv">
+                            <mat-label>CVV</mat-label>
+                            <input matInput [disabled]="processing">
+                            <div id="cvv" class="hosted-field"></div>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div align="end">
+                            <button mat-flat-button color="primary" (click)="pay()" [disabled]="processing">Pay</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </mat-card-content>
+    </mat-card>
+    <mat-card>
+        <mat-card-content>
+            <table mat-table [dataSource]="testAmounts">
+                <ng-container matColumnDef="rangeFloor" colspan="3">
+                    <th mat-header-cell *matHeaderCellDef>Amount</th>
+                    <td mat-cell *matCellDef="let element" class="range-floor">{{element.rangeFloor | number:
+                        '1.2'}}</td>
+                </ng-container>
+                <ng-container matColumnDef="separator">
+                    <th mat-header-cell *matHeaderCellDef class="hidden"></th>
+                    <td mat-cell *matCellDef="let element" class="separator">-</td>
+                </ng-container>
+                <ng-container matColumnDef="rangeCeiling">
+                    <th mat-header-cell *matHeaderCellDef class="hidden"></th>
+                    <td mat-cell *matCellDef="let element" class="range-ceiling">{{element.rangeCeiling ?
+                        (element.rangeCeiling | number: '1.2') : ''}}</td>
+                </ng-container>
+                <ng-container matColumnDef="result">
+                    <th mat-header-cell *matHeaderCellDef>Result</th>
+                    <td mat-cell *matCellDef="let element">{{element.authorized ? 'Success' : 'Failure'}}</td>
+                </ng-container>
+                <ng-container matColumnDef="input">
+                    <th mat-header-cell *matHeaderCellDef>Input</th>
+                    <td mat-cell *matCellDef="let element">
+                        <button mat-icon-button (click)="inputAmount(element.rangeFloor, element.rangeCeiling)">
+                            <mat-icon>input</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </mat-card-content>
+    </mat-card>
+</div>

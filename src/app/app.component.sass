@@ -1,0 +1,21 @@
+@use '../light' as light
+
+:host
+    background-color: light.$background
+    display: grid
+    grid-template-columns: 1fr auto
+    height: 100%
+    width: 100%
+
+.content
+    align-items: center
+    display: flex
+    justify-content: center
+    margin-right: 374px
+
+.sidebar-right
+    bottom: 0
+    position: absolute
+    right: 0
+    top: 0
+    width: 374px

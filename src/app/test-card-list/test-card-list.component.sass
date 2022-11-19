@@ -1,0 +1,39 @@
+@use '../../dark' as dark
+@use '../../typography' as typography
+
+.list
+    bottom: 0
+    box-sizing: border-box
+    display: grid
+    gap: 16px
+    height: 100%
+    overflow-y: auto
+    padding: 16px
+    &::-webkit-scrollbar
+        display: none
+    & .card
+        background-color: dark.$surface-variant
+        border-radius: 12px
+        box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)
+        color: dark.$on-surface-variant
+        padding: 68px 28px 32px
+        &:hover
+            background-color: dark.$background
+            box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%)
+            color: dark.$on-background
+        & .chip
+            background-color: #F79E1B
+            border-radius: 6px
+            height: 40px
+            width: 50px
+        & .number
+            align-items: center
+            display: flex
+            font-family: monospace
+            font-size: 24px
+            margin-right: -14px
+        & .details
+            margin-top: 8px
+            & .type
+                height: 48px
+                margin: -12px 0
