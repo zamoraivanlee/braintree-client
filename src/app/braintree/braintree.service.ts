@@ -10,11 +10,12 @@ export class BraintreeService {
 
   constructor(private http: HttpClient) { }
 
-  createTransaction(amount: number, nonce: string, deviceData: string) {
+  createTransaction(amount: number, nonce: string, deviceData: string, authenticatonId: string) {
     const body = {
       amount: amount,
       nonce: nonce,
-      deviceData: deviceData
+      deviceData: deviceData,
+      authenticationId: authenticatonId
     }
 
     return this.http.post(`${this.url}/transactions`, body)
